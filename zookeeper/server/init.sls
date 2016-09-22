@@ -15,6 +15,12 @@ include:
     - group: zookeeper
     - makedirs: True
 
+{{ zk.data_log_dir }}:
+  file.directory:
+    - user: zookeeper
+    - group: zookeeper
+    - makedirs: True
+
 move-zookeeper-dist-conf:
   cmd.run:
     - name: mv {{ zk.real_home }}/conf {{ zk.real_config }}
@@ -46,6 +52,7 @@ zoo-cfg:
       port: {{ zk.port }}
       bind_address: {{ zk.bind_address }}
       data_dir: {{ zk.data_dir }}
+      data_log_dir: {{ zk.data_log_dir }}
       snap_count: {{ zk.snap_count }}
       snap_retain_count: {{ zk.snap_retain_count }}
       purge_interval: {{ zk.purge_interval }}
@@ -139,6 +146,7 @@ zookeeper-service:
     - enable: true
     - require:
       - file: {{ zk.data_dir }}
+      - file: {{ zk.data_log_dir }}
     - watch:
       - file: zoo-cfg
 {% endif %}

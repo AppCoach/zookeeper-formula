@@ -22,6 +22,7 @@
 {%- set bind_address      = gc.get('bind_address', '0.0.0.0') %}
 
 {%- set data_dir          = gc.get('data_dir', pc.get('data_dir', '/var/lib/zookeeper/data')) %}
+{%- set data_log_dir      = gc.get('data_log_dir', pc.get('data_log_dir', '/var/log/zookeeper')) %}
 {%- set port              = gc.get('port', pc.get('port', '2181')) %}
 {%- set jmx_port          = gc.get('jmx_port', pc.get('jmx_port', '2183')) %}
 {%- set snap_count        = gc.get('snap_count', pc.get('snap_count', None)) %}
@@ -124,6 +125,7 @@
                     'jmx_port': jmx_port,
                     'bind_address': bind_address,
                     'data_dir': data_dir,
+                    'data_log_dir': data_log_dir,
                     'snap_count': snap_count,
                     'snap_retain_count': snap_retain_count,
                     'purge_interval': purge_interval,
