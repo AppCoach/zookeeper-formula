@@ -1,3 +1,5 @@
+{%- from 'zookeeper/settings.sls' import zk with context -%}
+
 #!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
@@ -46,7 +48,7 @@ ERROR_PROGRAM_NOT_CONFIGURED=6
 RETVAL=0
 SLEEP_TIME=3
 PROC_NAME="java"
-PIDFILE="/var/run/zookeeper/zookeeper-server.pid"
+PIDFILE="{{ zk.data_dir }}/zookeeper-server.pid"
 EXEC_PATH="{{ alt_home }}/bin/zkServer.sh"
 
 DAEMON="zookeeper"
@@ -75,7 +77,7 @@ start() {
 
 stop() {
   log_success_msg "Stopping ${DESC}: "
-  start_daemon $EXEC_PATH stop 
+  start_daemon $EXEC_PATH stop
   RETVAL=$?
 
   [ $RETVAL -eq $RETVAL_SUCCESS ] && rm -f $LOCKFILE $PIDFILE

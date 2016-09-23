@@ -14,9 +14,9 @@ zk-directories:
     - mode: 755
     - makedirs: True
     - names:
-      - /var/run/zookeeper
-      - /var/lib/zookeeper
-      - /var/log/zookeeper
+      - {{ zk.data_dir }}
+      - {{ zk.data_log_dir }}
+      - {{ zk.real_home }}
 
 install-zookeeper-dist:
   cmd.run:
