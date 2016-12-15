@@ -8,6 +8,7 @@ Group=zookeeper
 SyslogIdentifier=zookeeper
 EnvironmentFile=/etc/zookeeper/conf/zookeeper.env
 ExecStart=/usr/lib/zookeeper/bin/zkServer.sh start-foreground
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
